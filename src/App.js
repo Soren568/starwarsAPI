@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Filter from './components/Filter';
+import React, {useState} from 'react';
+
+import {
+    BrowserRouter,
+    Switch,
+    Route,
+} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const[data, setData] = useState("");
 
+    return (
+    <div className="App grid place-items-center pt-5" >
+        <BrowserRouter>
+            <Switch>
+                <Route path="/">
+                    <Filter passedData={{data: data, setData:setData}}/>
+                </Route>
+                <Route path="/:category/:id">
+                    <Filter passedData={data, setData}/>
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    </div>
+);
+}
 export default App;
